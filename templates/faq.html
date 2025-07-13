@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block title %}Frequently Asked Questions | TuneWell{% endblock %}
+
+{% block content %}
+<div class="container">
+  <h1>Frequently Asked Questions</h1>
+
+  <div class="faq-container" role="region" aria-label="Frequently Asked Questions">
+
+    <div class="faq-item">
+      <button class="faq-question" aria-expanded="false" aria-controls="faq1-content" id="faq1">
+        What is Sound Pharmacy?
+        <span class="arrow" aria-hidden="true">&#9660;</span>
+      </button>
+      <div id="faq1-content" class="faq-answer" role="region" aria-labelledby="faq1" hidden>
+        Sound Pharmacy provides audio-based remedies designed for relaxation, focus, and wellbeing.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" aria-expanded="false" aria-controls="faq2-content" id="faq2">
+        Are the remedies scientifically proven?
+        <span class="arrow" aria-hidden="true">&#9660;</span>
+      </button>
+      <div id="faq2-content" class="faq-answer" role="region" aria-labelledby="faq2" hidden>
+        While many users find them helpful, they are intended for personal wellbeing and relaxation purposes only.
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  document.querySelectorAll('.faq-question').forEach(button => {
+    button.addEventListener('click', () => {
+      const expanded = button.getAttribute('aria-expanded') === 'true';
+      button.setAttribute('aria-expanded', !expanded);
+      const content = document.getElementById(button.getAttribute('aria-controls'));
+      if (!expanded) {
+        content.hidden = false;
+        // Optionally animate max-height if you want
+      } else {
+        content.hidden = true;
+      }
+    });
+  });
+</script>
+{% endblock %}

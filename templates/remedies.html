@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}Remedies | Sonathera{% endblock %}
+
+{% block content %}
+<h2>Available Remedies</h2>
+
+{% if current_user.is_authenticated and current_user.is_admin %}
+  <a href="{{ url_for('add_remedy') }}" class="btn btn-primary mb-3">➕ Add Remedy</a>
+{% endif %}
+
+<div class="remedy-grid">
+  {% for remedy in remedies %}
+  <div class="remedy-card">
+    <h3><a href="{{ url_for('remedy_detail', remedy_id=remedy.id) }}">{{ remedy.name }}</a></h3>
+    <p>{{ remedy.description }}</p>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}

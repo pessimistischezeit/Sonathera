@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block title %}Add Remedy | TuneWell{% endblock %}
+
+{% block content %}
+<div class="container my-5" style="max-width: 650px;">
+  <h2 class="mb-4">Add New Remedy</h2>
+
+  <form method="POST" action="{{ url_for('add_remedy') }}">
+    {{ form.hidden_tag() }}
+
+    
+    <div class="mb-3">
+      {{ form.name.label(class="form-label") }}
+      {{ form.name(class="form-control", placeholder="e.g. Calm Drops") }}
+      {% for error in form.name.errors %}
+        <div class="text-danger small">{{ error }}</div>
+      {% endfor %}
+    </div>
+
+    
+    <div class="mb-3">
+      {{ form.description.label(class="form-label") }}
+      {{ form.description(class="form-control", rows="4", placeholder="Short description…") }}
+      {% for error in form.description.errors %}
+        <div class="text-danger small">{{ error }}</div>
+      {% endfor %}
+    </div>
+
+    
+    <div class="mb-3">
+      {{ form.audio.label(class="form-label") }}
+      {{ form.audio(class="form-control", placeholder="Filename or URL (e.g. calm-drops.mp3)") }}
+      {% for error in form.audio.errors %}
+        <div class="text-danger small">{{ error }}</div>
+      {% endfor %}
+    </div>
+
+    
+    <div class="mb-3">
+      {{ form.use.label(class="form-label") }}
+      {{ form.use(class="form-control", placeholder="When / why to use") }}
+      {% for error in form.use.errors %}
+        <div class="text-danger small">{{ error }}</div>
+      {% endfor %}
+    </div>
+
+    
+    <div class="mb-3">
+      {{ form.dosage.label(class="form-label") }}
+      {{ form.dosage(class="form-control", placeholder="e.g. 2 listens daily") }}
+      {% for error in form.dosage.errors %}
+        <div class="text-danger small">{{ error }}</div>
+      {% endfor %}
+    </div>
+
+    <button type="submit" class="btn btn-primary">{{ form.submit.label.text }}</button>
+  </form>
+</div>
+{% endblock %}
